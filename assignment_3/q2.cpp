@@ -58,10 +58,22 @@ bool isFull(char seatChar[7][5]) {
 
 void checkSeat(char seatChart[7][5], int row, char seat) {
 	int i = 0;
-
+	int seatIndex = seat - 'A' + 1; // Calculate index (1 for A, 2 for B, etc.)
+    if (seatChart[row - 1][seatIndex] == 'X') {
+        cout << "Sorry, seat " << row << seat << " is already occupied." << endl;
+    } else {
+        seatChart[row - 1][seatIndex] = 'X'; // Mark seat as occupied
+        cout << "You have successfully booked seat " << row << seat << "." << endl;
+    }
 }
 
 void printSeats(char seatChart[7][5]) {
 	cout << "AVAILABLE SEATS:" << endl;
-	
+	for (int i = 0; i < 7; i++) {
+        cout << seatChart[i][0] << " "; // Print row number
+        	for (int j = 1; j < 5; j++) { // Print seats A-D
+            	cout << seatChart[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
